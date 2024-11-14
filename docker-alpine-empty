@@ -1,0 +1,22 @@
+#
+# Usage:
+#
+#   docker build -f docker-alpine-empty -t alpine .
+#   docker run -d alpine
+#
+
+FROM alpine:latest
+
+RUN printf '\n\
+#!/bin/sh\n\
+\n\
+echo running $0\n\
+\n\
+sleep infinity\n\
+' >/usr/local/bin/docker-entrypoint.sh
+
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+
+~                                                         
