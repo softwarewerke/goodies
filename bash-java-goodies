@@ -7,22 +7,22 @@ jdk() {
   java -version
 }
 
-jdk8 {
+jdk8() {
   export JAVA_HOME=$J/jdk-1.8
   export PATH=$JAVA_HOME/bin:$PATH
 }
 
-jdk11 {
+jdk11() {
   export JAVA_HOME=$J/jdk-11
   export PATH=$JAVA_HOME/bin:$PATH
 }
 
-jdk17 {
+jdk17() {
   export JAVA_HOME=$J/jdk-17
   export PATH=$JAVA_HOME/bin:$PATH
 }
 
-jdk21 {
+jdk21() {
   export JAVA_HOME=$J/jdk-21
   export PATH=$JAVA_HOME/bin:$PATH
 }
