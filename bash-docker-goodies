@@ -1,0 +1,38 @@
+
+# docker shortcuts for command line
+
+alias dk='docker'
+alias dkp='docker ps'
+alias dka='docker ps --all'
+
+dkx() {
+    [ "$1" ] && {
+        docker exec -it "$1" ${2:-sh}
+        return
+    }
+    cat <<EOF
+
+eXecute command in a running container
+
+Usage: $FUNCNAME CONTAINER [COMMAND]
+
+COMMAND defaults to 'sh'
+
+EOF
+}
+
+dkX() {
+    [ "$1" ] && {
+        docker stop $*
+        docker rm $*
+    }
+}
+
+dkv() {
+    [ ! "$1" ] && {
+        docker volume ls
+        return
+    }
+
+    docker volume ls|grep "^$1"|cut -f2 -d' '
+}
