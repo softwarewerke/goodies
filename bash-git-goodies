@@ -1,0 +1,7 @@
+# Add all changes, commit amended and force push to remote
+
+gitUP() {
+  git add .
+  git commit --amend --no-edit
+  git push --force
+}
