@@ -1,0 +1,23 @@
+#
+# Usage:
+#
+#   docker build -f Dockerfile.mailhog -t mailhog .
+#   docker run -d -p 1025:1025 -p 8025:8025 mailhog
+#
+
+FROM alpine:latest
+
+RUN mkdir /opt/mailhog && wget -O /opt/mailhog/mailhog https://github.com/mailhog/MailHog/releases/download/v0.2.1/MailHog_linux_amd64 && chmod +x /opt/mailhog/*
+
+RUN printf '\n\
+echo running $0\n\
+\n\
+/opt/mailhog/mailhog &\
+\n\
+while [ true ] \n\
+do\n\
+sleep 10000\n\
+done\n\
+' >/docker-entrypoint.sh
+
+ENTRYPOINT ["/bin/sh","/docker-entrypoint.sh"]
