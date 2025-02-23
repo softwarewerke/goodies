@@ -28,6 +28,18 @@ dkX() {
     }
 }
 
+dki() {
+    docker image ls
+}
+
+dkiX() {
+    [ "$1" ] && {
+        docker image rm "$1"
+        return
+    }
+    docker image prune
+}
+
 dkv() {
     [ ! "$1" ] && {
         docker volume ls
