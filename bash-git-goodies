@@ -5,3 +5,35 @@ gitUP() {
   git commit --amend --no-edit
   git push --force
 }
+
+# Quick branch checkout and switch
+
+gout() {
+
+br="$1"
+bh=~/.branch.hist
+
+[ ! -e "$bh" ] && {
+  touch $bh
+}
+
+[ "$br" = "" ] && {
+  cat "$bh"
+  return
+}
+
+[ "$br" = "." ] && {
+  return
+}
+
+[ "$br" = ".." ] && {
+  return
+}
+
+br=$(git branch|cut -c3-|grep "$br"|head -1)
+
+[ "$br" ] && {
+  git checkout "$br"
+}
+
+}
